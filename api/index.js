@@ -1,5 +1,4 @@
-import express from 'express';
-import mongoose from 'mern-estate';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
@@ -7,7 +6,7 @@ import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
-mongoose.connect('mongodb://localhost:27017/mern-estate', { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 mongoose
   .connect(process.env.MONGO)
@@ -52,27 +51,3 @@ app.use((err, req, res, next) => {
     message,
   });
 });
-const mongoose = require('mongoose');
-
-// MongoDB connection URI
-const mongoURI = 'mongodb://localhost:27017/mern_estate';
-
-// Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('MongoDB connected');
-    // Start your server or do other operations here
-  })
-  .catch(err => console.log(err));
-
-// Example schema and model definition (if using Mongoose)
-const Schema = mongoose.Schema;
-const exampleSchema = new Schema({
-  name: String,
-  age: Number
-});
-const ExampleModel = mongoose.model('Example', exampleSchema);
-
-// Example usage of the model
-ExampleModel.find().then(docs => console.log(docs)).catch(err => console.error(err));
-
